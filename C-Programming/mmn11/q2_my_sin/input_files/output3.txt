@@ -1,0 +1,9 @@
+Hi there,
+Please enter a number (double) between 25.0 and -25.0 and i will calculate its sin.
+
+
+your input was: 18.000000
+
+the standard c library sin is: -0.750987
+
+my library sin is:             -0.750987

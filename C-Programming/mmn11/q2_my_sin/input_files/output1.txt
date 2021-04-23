@@ -1,0 +1,8 @@
+Hi there,
+Please enter a number (double) between 25.0 and -25.0 and i will calculate its sin.
+
+
+your input was: 30.000000
+
+this is not a valid input.
+Please enter a number (double) between 25.0 and -25.0 and i will calculate its sin.
