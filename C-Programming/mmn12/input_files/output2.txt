@@ -1,0 +1,22 @@
+
+Hi There!
+Please Choose Prefered Data: (0 = Buffer, 1 Linked List)
+Your Text Will Be Stored In: Buffer
+
+Please Enter Text To Store
+
+
+The Text You Stroed Is:
+
+Four astronauts returned safely to Earth from the Internatio
+nal Space Station early on Sunday in a SpaceX Crew Dragon ca
+psule, parachuting to splash-down in the Gulf of Mexico, NAS
+A said.Their return marked the end of the first crew rotatio
+n mission to the station by the Crew Dragon spacecraft, deve
+loped in partnership between NASA and Elon Musk's rocket com
+pany SpaceX, the agency said in a statement.The crew - NASA'
+s Michael Hopkins, Victor Glover and Shannon Walker, and Jap
+an's Soichi Noguchi - had launched from the Kennedy Space Ce
+nter in Florida on Nov. 15, propelled by a SpaceX Falcon 9 r
+ocket.The capsule, dubbed Resilience by the crew, splashed d
+own in darkness off the coast of Panama City, Florida.

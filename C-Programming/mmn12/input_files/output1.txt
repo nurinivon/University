@@ -1,0 +1,18 @@
+
+Hi There!
+Please Choose Prefered Data: (0 = Buffer, 1 Linked List)
+Your Text Will Be Stored In: Linked List
+
+Please Enter Text To Store
+
+
+The Text You Stroed Is:
+Sunday was declared a national day of mourning in Israel fo
+llowing the disaster at Mount Meron in which 45 people were
+ killed on Thursday night after a stampede broke out at the
+ religious bonfire-lighting ceremony for the holiday of Lag
+ Ba'omer.The proposition to hold a day of mourning was put 
+forward by Prime Minister Benjamin Netanyahu and Defense Mi
+nister Benny Gantz, and confirmed Friday by a vote among th
+e government's ministers held by telephone.
+
