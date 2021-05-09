@@ -183,6 +183,7 @@ ReadTextStatus readText(DataStructureType dsType, Buffer* bufferPoiter, Node* he
 	ReadTextStatus currentStatus; /*the return status*/
 	while ( (c = getchar()) && (c != EOF) ) /*standard input until EOF*/
 	{
+		c = (char) c; /*cast the int to char*/
 		if(c != '\n') /*we will not include '\n' char in order to print the lines with similar length*/
 		{
 			if(dsType == LINKED_LIST) /*check where to save the char*/
