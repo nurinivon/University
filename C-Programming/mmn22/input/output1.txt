@@ -1,0 +1,97 @@
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETA, 45, 23, 6, 7, 4, 3, 75 ,45, 34,77,15,28, -1 
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETA
+| 3 | 4 | 6 | 7 | 15 | 23 | 28 | 34 | 45 | 75 | 77 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETB, 47, 23, 99, 102,105,120,44,7,	11,-1
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETB
+| 7 | 11 | 23 | 44 | 47 | 99 | 102 | 105 | 120 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+union_set SETA,SETB,SETC
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETC
+| 3 | 4 | 6 | 7 | 11 | 15 | 23 | 28 | 34 | 44 | 45 | 47 | 75 | 77 | 99 | 102 |
+| 105 | 120 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+intersect_set SETB,SETA,SETD
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETD
+| 7 | 23 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+sub_set SETC,SETA,SETE
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETE
+| 11 | 44 | 47 | 99 | 102 | 105 | 120 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+symdiff_set SETC,SETA,SETF
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETF
+| 11 | 44 | 47 | 99 | 102 | 105 | 120 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+stop
+Bye Bye !

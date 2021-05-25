@@ -1,0 +1,97 @@
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETA, 46, 24, 7, 8, 5, 4, 74 ,40, 34,77,15,28,40,24,66,19,32,89,92, -1 
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETA
+| 4 | 5 | 7 | 8 | 15 | 19 | 24 | 28 | 32 | 34 | 40 | 46 | 66 | 74 | 77 | 89 |
+| 92 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETB, 9,101,73,74,17,22,30,78,65,44,-1
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETB
+| 9 | 17 | 22 | 30 | 44 | 65 | 73 | 74 | 78 | 101 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+union_set SETC, SETA, SETB,
+Extraneous text after end of command
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETC
+| The set is empty |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+intersect_set SETB,SETA
+Extraneous text after end of command
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETD
+| The set is empty |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETB, 86,9,72,5,61,100,119,24.8,-1
+Invalid set member – not an integer
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETB
+| 9 | 17 | 22 | 30 | 44 | 65 | 73 | 74 | 78 | 101 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+SUB_set SETC,SETA,SETE
+Undefined command name
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETE
+| The set is empty |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+stop
+Bye Bye !

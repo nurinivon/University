@@ -1,0 +1,125 @@
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETA, 46, 24, 7, 8, 5, 4, 74 ,40, 34,77,15,28,40,24,66,19,32,89,92, -1 
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETA
+| 4 | 5 | 7 | 8 | 15 | 19 | 24 | 28 | 32 | 34 | 40 | 46 | 66 | 74 | 77 | 89 |
+| 92 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETC,6,105,-60,-1
+Invalid set member – value out of range
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETC
+| The set is empty |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+read_set SETB, 	9,101,73,74,17,22,30,78,65,44,-1
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETB
+| 9 | 17 | 22 | 30 | 44 | 65 | 73 | 74 | 78 | 101 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+union_set SETC, SETA, SETB,
+Extraneous text after end of command
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETC
+| The set is empty |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+intersect_set SETB,SETA,SETD
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETD
+| 74 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+sub_set SETC,SETA,SETE
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETE
+| The set is empty |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+symdiff_set SETC,SETA,SETF
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+print_set SETF
+| 4 | 5 | 7 | 8 | 15 | 19 | 24 | 28 | 32 | 34 | 40 | 46 | 66 | 74 | 77 | 89 |
+| 92 |
+Command Executed Successfully
+
+
+Please Enter A Command: 
+
+Your Command Is :
+do_it SETA, SETB, SETC
+Undefined command name
+
+
+Please Enter A Command: 
+
+Your Command Is :
+sub_set SETF, , SETD, SETA
+Multiple consecutive commas
+
+
+Please Enter A Command: 
+
+NOTICE: The Program Stopped Unexpectedly, You Should Use 'stop' Command To Exit Properly

@@ -1,0 +1,13 @@
+read_set SETA, 45, 23, 6, 7, 4, 3, 75 ,45, 34,77,15,28, -1 
+print_set SETA
+read_set SETB, 47, 23, 99, 102,105,120,44,7,	11,-1
+print_set SETB
+union_set SETA,SETB,SETC
+print_set SETC
+intersect_set SETB,SETA,SETD
+print_set SETD
+sub_set SETC,SETA,SETE
+print_set SETE
+symdiff_set SETC,SETA,SETF
+print_set SETF
+stop

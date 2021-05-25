@@ -1,0 +1,13 @@
+read_set SETA, 46, 24, 7, 8, 5, 4, 74 ,40, 34,77,15,28,40,24,66,19,32,89,92, -1 
+print_set SETA
+read_set SETB, 9,101,73,74,17,22,30,78,65,44,-1
+print_set SETB
+union_set SETC, SETA, SETB,
+print_set SETC
+intersect_set SETB,SETA
+print_set SETD
+read_set SETB, 86,9,72,5,61,100,119,24.8,-1
+print_set SETB
+SUB_set SETC,SETA,SETE
+print_set SETE
+stop
