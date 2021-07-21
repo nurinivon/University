@@ -1,1 +1,0 @@
-$ ./assembler examples/example1/test.as
