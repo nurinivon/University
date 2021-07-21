@@ -1,0 +1,19 @@
+
+
+errors in file: test.as
+line 2: undefined line type
+	sample source code
+line 14: missing operands
+	 sw $0,4
+line 21: extraneous comma after end of command
+	K: .dw 31,-12,
+line 22: undefined operand
+	END stop
+
+
+invalid file name: test1.asd
+
+invalid file name: test2
+
+cannot open file: test3.as
+

@@ -1,0 +1,17 @@
+
+
+errors in file: test.as
+line 8: missing comma
+	MAIN: add $3 $5,$9
+line 9: unexpected comma
+	LOOP: ori $9,,-5,$2
+line 24: extraneous operand
+	END: stop , $1
+
+
+
+errors in file: test2.as
+line 1: expected internal label but found extern
+	 bgt $4,$2,val1
+
+

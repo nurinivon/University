@@ -1,0 +1,9 @@
+
+
+errors in file: test.as
+line 6: register out of range
+	MAIN: add $3,$5,$96
+line 11: number out of range
+	LIST: .db 605,-9
+
+
