@@ -1,0 +1,2 @@
+The scheduling according to Palmer's module is:
+J1 -> J3 -> J2
