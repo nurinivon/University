@@ -19,6 +19,12 @@ public class Job {
 		
 	}
 	
+	//A duplication Job constructor.
+	public Job(Job job) {
+		this.jobName = job.jobName;
+		this.timeList = new ArrayList<Integer>();
+	}
+	
 	//A Job object constructor with job name only.
 	public Job(String jobName) {
 		this.jobName = jobName;

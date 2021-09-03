@@ -1,0 +1,5 @@
+The optimized scheduling is:
+J4 -> J5 -> J3 -> J1 -> J2 -> J6
+
+Cmax:
+136

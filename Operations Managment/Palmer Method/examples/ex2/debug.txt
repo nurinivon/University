@@ -39,3 +39,6 @@ S3 =(-2 * 1) + (0 * 2) + (2 * 3) = 4
 Stage 3: Scheduling The Jobs By Descending Scores
 
 J1 -> J3 -> J2
+
+Cmax:
+29

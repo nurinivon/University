@@ -33,12 +33,14 @@ import java.io.FileWriter;
  * The program's output is the following:
  * "result.txt" file with the scheduled jobs
  * (Optional) "debug.txt" file with descriptions of all the program's stages (could be done with "-d" argument for the program)
+ * (Optional) "optimized.txt" file with the optimized scheduling of the jobs (could be done with "-o" argument for the program)
  */
 public class MainApp {
 
 	//constant variables for the program
 	final static String RESULT_FILE_NAME = "result.txt";
 	final static String DEBUG_FILE_NAME = "debug.txt";
+	final static String OPTIMIZED_FILE_NAME = "optimized.txt";
 	final static String SCHEDULE_FILE_NAME = "schedule.xlsx";
 	
 	/*
@@ -55,26 +57,34 @@ public class MainApp {
 		numberOfMachines = excelFile.getMachines().size();
 		numberOfJobs = excelFile.getJobs().size();
 		Boolean debugMode = false; //debug mode flag
-		//check arguments for debug flag "-d"
-		if(args.length > 0) {
-			if(args.length > 1) {//only 1 argument or 0 allowed
-				print("\nto many arguments.");
-				System.exit(0);
-			}
-			if(args[0].equals("-d")) { //only "-d" allowed
+		Boolean optimumMode = false; //optimum mode flag
+		//check arguments
+		if(args.length > 2) {//Max 2 argument allowed
+			print("\nto many arguments.");
+			System.exit(0);
+		}
+		for(String arg : args) {
+			if(arg.equals("-d")) {
 				debugMode = true;
 			}else {
-				print("\nundefined argument");
-				System.exit(0);				
+				if(arg.equals("-o")) {
+					optimumMode = true;
+				}else {
+					print("\nundefined argument");
+					System.exit(0);		
+				}
 			}
 		}
 		if(numberOfMachines > 0) { //check there are machines in the file
 			if(numberOfJobs > 0) { //check there are jobs in the file
 				setMachinesWeight(excelFile); //1st stage in Palmer's Module - calculate machines' weights
 				setJobsScore(excelFile); //2nd step in Palmer's Module - calculate jobs' score
-				createResultFile(excelFile.getResult()); //provide the "result.txt" file with the scheduled jobs
+				createFile(excelFile.getResult(), RESULT_FILE_NAME); //provide the "result.txt" file with the scheduled jobs
 				if(debugMode) {
-					createDebugFile(excelFile.getDebug()); //provide the "debug.txt" with full descriptions of all the program's stages
+					createFile(excelFile.getDebug(), DEBUG_FILE_NAME); //provide the "debug.txt" with full descriptions of all the program's stages
+				}
+				if(optimumMode) {
+					createFile(excelFile.getOptimized(), OPTIMIZED_FILE_NAME); //provide the "optimized.txt" with the optimized scheduling
 				}
 			}else {
 				print("\nno jobs specified.");
@@ -150,40 +160,20 @@ public class MainApp {
 	}
 
 	/*
-	 * createResultFile is a method that gets a string and creates "result.txt" file in the location of the program.
-	 * The method gets a string as parameter this would be the ".txt" file's content
-	 * The method delete's already existing file if there is.
+	 * createFile is a method that creates a file in the location of the program.
+	 * The method gets a strings the file name and content for the file
+	 * The method delete's already existing file if exists.
 	 * complexity - O(1)
 	 */
-	public static void createResultFile(String str) {
+	public static void createFile(String content, String fileName) {
 		try {
-        	File myObj = new File(RESULT_FILE_NAME); //create file instance
+        	File myObj = new File(fileName); //create file instance
             myObj.delete(); //delete file if exists
             myObj.createNewFile(); //create mew file
-            FileWriter myWriter = new FileWriter(RESULT_FILE_NAME); //write to the file
-            myWriter.write(str); //write the string
+            FileWriter myWriter = new FileWriter(fileName); //write to the file
+            myWriter.write(content); //write the string
             myWriter.close(); //close the writer
-            System.out.println("Scheduling is done. your result will appear in the file: " + myObj.getName());
-        } catch(IOException e){ //catch file exception
-        	e.printStackTrace();
-        }
-	}
-	
-	/*
-	 * createDebugFile is a method that gets a string and creates "debug.txt" file in the location of the program.
-	 * The method gets a string as parameter this would be the ".txt" file's content
-	 * The method delete's already existing file if there is.
-	 * complexity - O(1)
-	 */
-	public static void createDebugFile(String str) {
-		try {
-        	File myObj = new File(DEBUG_FILE_NAME); //create file instance
-            myObj.delete(); //delete file if exists
-            myObj.createNewFile(); //create mew file
-            FileWriter myWriter = new FileWriter(DEBUG_FILE_NAME); //write to the file
-            myWriter.write(str); //write the string
-            myWriter.close(); //close the writer
-            System.out.println("Full steps traces wil appear in the file: " + myObj.getName());
+            System.out.println("File created successfuly: " + myObj.getName());
         } catch(IOException e){ //catch file exception
         	e.printStackTrace();
         }

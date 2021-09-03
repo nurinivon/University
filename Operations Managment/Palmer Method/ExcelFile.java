@@ -1,6 +1,7 @@
 package com.palmer.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Iterator;
 
@@ -24,12 +25,14 @@ public class ExcelFile {
 	private List<Machine> machines; //the list of machines in the excel file (rows)
 	private List<Job> jobs; //the list of the jobs in the excel file (columns)
 	private String debugStr; //a string contains descriptions of the program stages
+	private List<int[]> combinationsOptions; //list of all jobs scheduling options
 	
 	//ExcelFile object constructor
 	public ExcelFile() {
 		this.machines = new ArrayList<Machine>();
 		this.jobs = new ArrayList<Job>();
 		this.debugStr = "";
+		this.combinationsOptions = new ArrayList<int[]>();
 	}
 	
 	/*
@@ -200,6 +203,8 @@ public class ExcelFile {
 	public String getResult() {
 		String result; //the result string with the scheduled jobs
 		int i; //jobs list index
+		int[] tempCombination = new int[this.jobs.size()]; //create scheduling options by jobs indexes
+		int combinationIndex = 0; //index in the combination array
 		int currentMaxScore; //will save the max score while iterating the jobs list
 		int maxJobIndex = 0; //will save the current job's index with the max score
 		List<String> usedJobs = new ArrayList<String>(); //list to save the jobs that scheduled
@@ -218,14 +223,126 @@ public class ExcelFile {
 				i++;
 			}
 			usedJobs.add(this.jobs.get(maxJobIndex).getJobName()); //add the job to scheduled list
-			result += this.jobs.get(maxJobIndex).getJobName(); //add the job name to result string
-			this.addDebugStr(this.jobs.get(maxJobIndex).getJobName()); //add the job name to the debug string
-			if(usedJobs.size() != this.jobs.size()) { //check if there are more jobs
-				//add separators to jobs strings
-				result += " -> ";
-				this.addDebugStr(" -> ");
-			}
+			tempCombination[combinationIndex] = maxJobIndex; //add the index to the combination array
+			combinationIndex++;
 		}
+		int tempCurrentCmax = getCmax(tempCombination); //get the current combination cmax
+		String combinationString = combinationToString(tempCombination); //create a combination string split by "->"
+		result += combinationString + "\n\nCmax:\n" + tempCurrentCmax; //update the result str
+		this.addDebugStr(combinationString + "\n\nCmax:\n" + tempCurrentCmax); //update debug str
 		return result;
 	}
+	
+	/*
+	 * getOptimized is an instance method.
+	 * the function tries all the possible combinations of scheduling the jobs on the machines.
+	 * it founds the best combination (lowest Cmax) and return it as string split by "->"
+	 * complexity - O(n! * m)
+	 */
+	public String getOptimized() {
+		String result = "The optimized scheduling is:\n"; //open sentence for the optimum file
+		int[] tempArray = new int[this.jobs.size()]; //create int array contains the numbers 0 - number of jobs
+		for(int i = 0; i < tempArray.length; i++) {
+			tempArray[i] = i;
+		}
+		createJobsCombinations(tempArray, 0); //create all the possible combinations for the numbers in the array, will be stored in this.combinationsOptions
+		int i = 0;
+		int currentMinCmax = Integer.MAX_VALUE; //init start min cmax
+		int currentBestCombinationIndex = 0;
+		int currentCmax;
+		for(int[] currentOption : this.combinationsOptions) { //iterate all combinations
+			currentCmax = getCmax(currentOption); //get current cmax
+			if(currentCmax < currentMinCmax) { //if it smaller than curren min cmax
+				currentMinCmax = currentCmax; //store the cmax
+				currentBestCombinationIndex = i; //store is index
+			}
+			i++;
+		}
+		result += combinationToString(this.combinationsOptions.get(currentBestCombinationIndex)) + "\n\nCmax:\n" + currentMinCmax; //update result string
+		return result;
+	}
+	
+	/*
+	 * combinationToString is a method the get a combination as int array, the array contains the jobs indexes.
+	 * it returns the jobs names ordered by the order in the array, split by "->"
+	 * complexity - O(n)
+	 */
+	public String combinationToString(int[] combination) {
+		String result = ""; //init result
+		int i;
+		for(i = 0; i < combination.length - 1; i++) { //iterate the combination without last node
+			result += this.jobs.get(combination[i]).getJobName() + " -> "; 
+		}
+		result += this.jobs.get(combination[i]).getJobName();
+		return result;
+	}
+	
+	/*
+	 * getCmax is a method that gets a combination as int array, the array contains the jobs indexes.
+	 * the method returns the cmax of the specific combination as int.
+	 * complexity - O(n * m)
+	 */
+	public int getCmax(int[] combination) {
+		int currentCmax = 0; //save the cmax all along the function
+		int machineIndex = 0; //machine index in the scheduling matrix
+		int jobIndex = 0; //jobs index in the scheduling matrix
+		int[][] cMaxMatrix = new int[this.machines.size()][this.jobs.size()]; //scheduling matrix of jobs and machines
+		while(machineIndex < this.machines.size()) { //iterate the machines
+			jobIndex = 0;
+			while(jobIndex < combination.length) {
+				Job currentJob = this.jobs.get(combination[jobIndex]);
+				int currentJobTiming = currentJob.getTimeList().get(machineIndex); //get the specific timing of the job on the machine
+				if(machineIndex == 0) { //on first machine no need to check last machine end time of the job
+					cMaxMatrix[machineIndex][jobIndex] = currentCmax + currentJobTiming;
+					currentCmax += currentJobTiming;
+				}else {
+					/*
+					 * on all other machines the start of the job will be the latest out of:
+					 * the last job end time on the same machine or
+					 * the same jobs end time on the previous machine
+					 */
+					int latestStart;
+					if(jobIndex == 0) {
+						latestStart = cMaxMatrix[machineIndex - 1][jobIndex];
+					}else {
+						latestStart = Math.max(cMaxMatrix[machineIndex][jobIndex - 1], cMaxMatrix[machineIndex - 1][jobIndex]);	
+					}
+					cMaxMatrix[machineIndex][jobIndex] = latestStart + currentJobTiming;
+					currentCmax = latestStart + currentJobTiming;
+				}
+				jobIndex++;
+			}
+			machineIndex++;
+		}
+		return currentCmax;
+	}
+	
+	/*
+	 * createJobsCombinations is a recursive method that gets a ints array and cerate all the possible combinations of ordering those ints.
+	 * in our case the combinations will be stored in this.combinationsOptions
+	 * complexity - O(n!)
+	 */
+    private void createJobsCombinations(int[] array, int pos){  
+        if(pos >= array.length - 1){ //recursive stopping condition
+            int[] newArr = new int[this.jobs.size()]; //create new combination
+            for(int i = 0; i < array.length; i++){ //iterate the array and copy the ints
+            	newArr[i] += array[i];
+            }
+            this.combinationsOptions.add(newArr); //add the combination to the instance
+            return;  
+        }  
+  
+        for(int i = pos; i < array.length; i++){   
+          
+            int t = array[pos];  
+            array[pos] = array[i];  
+            array[i] = t;  
+  
+            createJobsCombinations(array, pos+1); //recursive call after changing the order and start position
+  
+            t = array[pos];  
+            array[pos] = array[i];  
+            array[i] = t;  
+        }  
+    }  
 }//end of class ExcelFile

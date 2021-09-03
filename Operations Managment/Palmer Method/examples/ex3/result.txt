@@ -1,2 +1,5 @@
 The scheduling according to Palmer's module is:
 J1 -> J2 -> J3
+
+Cmax:
+49
