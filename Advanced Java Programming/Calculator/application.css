@@ -1,0 +1,20 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*VBox {
+    -fx-border-color: black ;
+    -fx-border-width: 10 ;
+ }
+ #mainContainer{
+ 	-fx-border-color: black ;
+    -fx-border-width: 10 ;
+ }*/
+ 
+  #buttonsContainer{
+  	-fx-border-style: none solid solid solid;
+ 	-fx-border-color: black;
+    -fx-border-width: 5 10 10 10;
+ }
+ #screenContainer{
+  	-fx-border-style: none none solid solid;
+ 	-fx-border-color: black;
+    -fx-border-width: 10 10 5 10;
+ }

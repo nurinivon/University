@@ -1,0 +1,17 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+
+.table-column {
+  -fx-alignment: center;
+  -fx-text-alignment: center;
+}
+.table-column HBox{
+  -fx-alignment: center;
+}
+
+.table-column HBox Button{
+  -fx-pref-width: 60px;
+  -fx-padding: 5px;
+  -fx-border-insets: 5px;
+  -fx-background-insets: 5px;
+}
